@@ -2,6 +2,7 @@ import "./styles.css";
 import { Photo } from "../../types";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader";
 
 const PhotoView = () => {
   const { photoId } = useParams();
@@ -34,7 +35,11 @@ const PhotoView = () => {
   }, [photoId]);
 
   if (isLoading || !photo) {
-    return <div>Loading...</div>;
+    return (
+      <div className="photo-view">
+        <Loader />
+      </div>
+    );
   }
 
   return (

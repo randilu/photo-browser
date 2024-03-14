@@ -2,11 +2,12 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import "./styles.css";
 import GridItem from "../GridItem";
 import { Photo } from "../../types";
+import Loader from "../Loader";
 
 const PhotoGrid = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(0);
   const [photos, setPhotos] = useState<Photo[]>([]);
 
   const pageSize = 20;
@@ -30,6 +31,8 @@ const PhotoGrid = () => {
   );
 
   useEffect(() => {
+    let mounted = true;
+
     async function fetchPhotos() {
       setIsLoading(true);
       let response;
@@ -43,27 +46,40 @@ const PhotoGrid = () => {
         return;
       }
       const newPhotos = (await response.json()) as [];
+      if (mounted) {
+        setPhotos((photos) => [...photos, ...newPhotos]);
+      }
 
-      setPhotos((photos) => [...photos, ...newPhotos]);
       setHasNextPage(newPhotos.length > 0);
       setIsLoading(false);
     }
 
     fetchPhotos();
+
+    return () => {
+      mounted = false;
+    };
   }, [currentPage]);
+
+  if (isLoading && !photos.length) {
+    return <Loader />;
+  }
 
   const photoList = photos.map(
     (photo: { id: string; thumbnailUrl: string }, index: number) => {
       if (photos.length === index + 1) {
         return (
           <GridItem
+            key={index}
             id={photo.id}
             thumbnailUrl={photo.thumbnailUrl}
             reference={lastPhotoElmRef}
           />
         );
       }
-      return <GridItem id={photo.id} thumbnailUrl={photo.thumbnailUrl} />;
+      return (
+        <GridItem key={index} id={photo.id} thumbnailUrl={photo.thumbnailUrl} />
+      );
     }
   );
 
