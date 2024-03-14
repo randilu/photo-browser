@@ -6,9 +6,6 @@ import Loader from "../Loader";
 
 const PhotoView = () => {
   const { photoId } = useParams();
-
-  console.log({ photoId });
-
   const [photo, setPhoto] = useState<Photo | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 

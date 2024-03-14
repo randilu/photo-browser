@@ -36,9 +36,10 @@ const PhotoGrid = () => {
     async function fetchPhotos() {
       setIsLoading(true);
       let response;
+      const start = currentPage * pageSize;
       try {
         response = await fetch(
-          `https://jsonplaceholder.typicode.com/photos?_start=${currentPage}&_limit=${pageSize}`
+          `https://jsonplaceholder.typicode.com/photos?_start=${start}&_limit=${pageSize}`
         );
       } catch (error) {
         console.error("Error fetching photos", error);
@@ -70,7 +71,7 @@ const PhotoGrid = () => {
       if (photos.length === index + 1) {
         return (
           <GridItem
-            key={index}
+            key={photo.id}
             id={photo.id}
             thumbnailUrl={photo.thumbnailUrl}
             reference={lastPhotoElmRef}
