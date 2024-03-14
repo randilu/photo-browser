@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #e7e1e3;
+}
+
+.grid-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 95vh;
+  width: 50%;
+  overflow: scroll;
+  flex-wrap: wrap;
+  background-color: #faf7f8;
+}
+
+.grid-item {
+  margin: 0.5rem;
+}
