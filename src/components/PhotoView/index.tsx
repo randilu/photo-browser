@@ -35,13 +35,19 @@ const PhotoView = () => {
     return <Loader />;
   }
 
+  const { albumId, url, title } = photo;
+
   return (
     <div className="photo-view-container">
       <div className="photo-view">
-        <img className="photo" src={photo.url} alt={photo.title} />
+        <img className="photo" src={url} alt={title} />
         <div className="photo-content">
-          <p className="photo-label">Title: {photo.title}</p>
-          <p className="photo-label">Album ID: {photo.albumId}</p>
+          <p className="photo-label">Title: {title}</p>
+          <p className="photo-label">Album ID: {albumId}</p>
+          <p className="photo-label">
+            {" "}
+            <a href={`/albums/${albumId}`}>Browse full album</a>
+          </p>
         </div>
       </div>
     </div>

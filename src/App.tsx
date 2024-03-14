@@ -1,8 +1,9 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { API_BASE_URL } from "./constants";
+import AlbumView from "./components/AlbumView";
 import Header from "./components/Header";
 import PhotoGrid from "./components/PhotoGrid";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PhotoView from "./components/PhotoView";
-import { API_BASE_URL } from "./constants";
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           />
           <Route path="photos">
             <Route path=":photoId" element={<PhotoView />} />
+          </Route>
+          <Route path="albums">
+            <Route path=":albumId" element={<AlbumView />} />
           </Route>
           <Route
             path="*"
