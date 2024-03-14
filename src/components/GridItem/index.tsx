@@ -10,9 +10,9 @@ const GridItem = ({
   reference?: any;
 }) => {
   return (
-    <div className="grid-item" ref={reference}>
+    <button className="grid-item" ref={reference}>
       <img src={thumbnailUrl} alt="thumbnail" />
-    </div>
+    </button>
   );
 };
 
