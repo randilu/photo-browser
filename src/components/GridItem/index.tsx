@@ -3,14 +3,14 @@ import "./styles.css";
 const GridItem = ({
   id,
   thumbnailUrl,
-  ref,
+  reference,
 }: {
   id: string;
   thumbnailUrl: string;
-  ref?: any;
+  reference?: any;
 }) => {
   return (
-    <div key={id} className="grid-item" ref={ref}>
+    <div className="grid-item" ref={reference}>
       <img src={thumbnailUrl} alt="thumbnail" />
     </div>
   );

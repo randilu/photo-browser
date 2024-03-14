@@ -1,19 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./styles.css";
 import GridItem from "../GridItem";
+import { Photo } from "../../types";
 
 const PhotoGrid = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState<Photo[]>([]);
 
   const pageSize = 20;
 
   const observer = useRef<IntersectionObserver>();
 
   const lastPhotoElmRef = useCallback(
-    (elm: HTMLElement) => {
+    (elm: HTMLDivElement) => {
       if (isLoading) return;
       if (observer.current) observer.current.disconnect();
 
@@ -42,7 +43,11 @@ const PhotoGrid = () => {
         return;
       }
       const newPhotos = (await response.json()) as [];
-      setPhotos((photos) => [...photos, ...newPhotos]);
+      const newPhotosWithIds = newPhotos.map((photo: Photo) => ({
+        ...photo,
+        id: `${photo.id}-${currentPage}`,
+      }));
+      setPhotos((photos) => [...photos, ...newPhotosWithIds]);
       setHasNextPage(newPhotos.length > 0);
       setIsLoading(false);
     }
@@ -57,12 +62,16 @@ const PhotoGrid = () => {
           <GridItem
             id={photo.id}
             thumbnailUrl={photo.thumbnailUrl}
-            ref={lastPhotoElmRef}
+            reference={lastPhotoElmRef}
           />
         );
       }
-
-      return <GridItem id={photo.id} thumbnailUrl={photo.thumbnailUrl} />;
+      return (
+        <GridItem
+          id={photo.id}
+          thumbnailUrl={photo.thumbnailUrl}
+        />
+      );
     }
   );
 
