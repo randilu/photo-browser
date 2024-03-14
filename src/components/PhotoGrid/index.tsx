@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./styles.css";
+import GridItem from "../GridItem";
 
 const PhotoGrid = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -12,7 +13,7 @@ const PhotoGrid = () => {
   const observer = useRef<IntersectionObserver>();
 
   const lastPhotoElmRef = useCallback(
-    (elm: HTMLDivElement) => {
+    (elm: HTMLElement) => {
       if (isLoading) return;
       if (observer.current) observer.current.disconnect();
 
@@ -53,17 +54,15 @@ const PhotoGrid = () => {
     (photo: { id: string; thumbnailUrl: string }, index: number) => {
       if (photos.length === index + 1) {
         return (
-          <div key={photo.id} className="grid-item" ref={lastPhotoElmRef}>
-            <img src={photo.thumbnailUrl} alt="thumbnail" />
-          </div>
+          <GridItem
+            id={photo.id}
+            thumbnailUrl={photo.thumbnailUrl}
+            ref={lastPhotoElmRef}
+          />
         );
       }
 
-      return (
-        <div key={photo.id} className="grid-item">
-          <img src={photo.thumbnailUrl} alt="thumbnail" />
-        </div>
-      );
+      return <GridItem id={photo.id} thumbnailUrl={photo.thumbnailUrl} />;
     }
   );
 
