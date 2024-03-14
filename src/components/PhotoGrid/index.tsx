@@ -43,11 +43,8 @@ const PhotoGrid = () => {
         return;
       }
       const newPhotos = (await response.json()) as [];
-      const newPhotosWithIds = newPhotos.map((photo: Photo) => ({
-        ...photo,
-        id: `${photo.id}-${currentPage}`,
-      }));
-      setPhotos((photos) => [...photos, ...newPhotosWithIds]);
+
+      setPhotos((photos) => [...photos, ...newPhotos]);
       setHasNextPage(newPhotos.length > 0);
       setIsLoading(false);
     }
@@ -66,12 +63,7 @@ const PhotoGrid = () => {
           />
         );
       }
-      return (
-        <GridItem
-          id={photo.id}
-          thumbnailUrl={photo.thumbnailUrl}
-        />
-      );
+      return <GridItem id={photo.id} thumbnailUrl={photo.thumbnailUrl} />;
     }
   );
 
