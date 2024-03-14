@@ -66,23 +66,14 @@ const PhotoGrid = () => {
     return <Loader />;
   }
 
-  const photoList = photos.map(
-    (photo: { id: string; thumbnailUrl: string }, index: number) => {
-      if (photos.length === index + 1) {
-        return (
-          <GridItem
-            key={photo.id}
-            id={photo.id}
-            thumbnailUrl={photo.thumbnailUrl}
-            reference={lastPhotoElmRef}
-          />
-        );
-      }
+  const photoList = photos.map((photo: Photo, index: number) => {
+    if (photos.length === index + 1) {
       return (
-        <GridItem key={index} id={photo.id} thumbnailUrl={photo.thumbnailUrl} />
+        <GridItem key={photo.id} photo={photo} reference={lastPhotoElmRef} />
       );
     }
-  );
+    return <GridItem key={index} photo={photo} />;
+  });
 
   return (
     <div className="container">

@@ -32,11 +32,7 @@ const PhotoView = () => {
   }, [photoId]);
 
   if (isLoading || !photo) {
-    return (
-      <div className="photo-view">
-        <Loader />
-      </div>
-    );
+    return <Loader />;
   }
 
   return (
