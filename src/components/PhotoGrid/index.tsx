@@ -10,12 +10,12 @@ const PhotoGrid = ({ fetchUrl }: { fetchUrl: string }) => {
     isLoading,
     items: photos,
     lastElementRef,
-  } = useLazyLoader({
+  } = useLazyLoader<Photo>({
     pageSize: PAGE_SIZE,
     fetchUrl,
   });
 
-  if (isLoading && !photos.length) {
+  if (photos.length === 0) {
     return <Loader />;
   }
 
@@ -25,7 +25,7 @@ const PhotoGrid = ({ fetchUrl }: { fetchUrl: string }) => {
         <GridItem key={photo.id} photo={photo} reference={lastElementRef} />
       );
     }
-    return <GridItem key={index} photo={photo} />;
+    return <GridItem key={index} photo={photo as Photo} />;
   });
 
   return (

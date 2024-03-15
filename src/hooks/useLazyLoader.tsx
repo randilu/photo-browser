@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { PAGE_SIZE } from "../constants";
 
-export default function useLazyLoader({
+export default function useLazyLoader<T>({
   pageSize = PAGE_SIZE,
   fetchUrl,
 }: {
@@ -11,7 +11,7 @@ export default function useLazyLoader({
   const [isLoading, setIsLoading] = useState(false);
   const [hasNextPage, setHasNextPage] = useState(true);
   const [currentPage, setCurrentPage] = useState(0);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<T[]>([]);
 
   const observer = useRef<IntersectionObserver>();
 

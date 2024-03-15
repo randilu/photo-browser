@@ -7,7 +7,7 @@ const AlbumView = () => {
 
   return (
     <div className="album-container">
-      <p className="album-view-label">Album view</p>
+      <p className="album-view-label">{`Album Id: ${albumId}`}</p>
       <PhotoGrid
         fetchUrl={`https://jsonplaceholder.typicode.com/albums/${albumId}/photos`}
       />

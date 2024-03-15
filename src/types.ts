@@ -1,6 +1,6 @@
 export type Photo = {
-    albumId: string,
-    id: string;
+    albumId: number,
+    id: number;
     thumbnailUrl: string;
     title: string;
     url: string;
