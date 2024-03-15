@@ -4,6 +4,8 @@
 
 Allows users to browse photos.
 
+[Visit the deployed version](https://randilu.github.io/photo-browser/)
+
 ## Features
 - Users can see all the photos.
 - User can see details of the individual photo.
