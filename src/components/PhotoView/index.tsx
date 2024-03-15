@@ -46,7 +46,7 @@ const PhotoView = () => {
           <p className="photo-label">Album ID: {albumId}</p>
           <p className="photo-label">
             {" "}
-            <a href={`/albums/${albumId}`}>Browse full album</a>
+            <a href={`#/albums/${albumId}`}>Browse full album</a>
           </p>
         </div>
       </div>

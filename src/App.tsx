@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { API_BASE_URL } from "./constants";
 import AlbumView from "./components/AlbumView";
 import Header from "./components/Header";
@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       <Header />
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route
             path="/"
@@ -24,7 +24,7 @@ function App() {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
