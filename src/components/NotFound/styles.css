@@ -1,0 +1,14 @@
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+}
+
+.not-found-label {
+  margin-left: 2rem;
+  font-size: 1.5rem;
+  color: #312339;
+  font-family: "Rubik", sans-serif;
+  font-weight: 700;
+}
