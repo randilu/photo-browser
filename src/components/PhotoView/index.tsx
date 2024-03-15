@@ -10,6 +10,8 @@ const PhotoView = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    let mounted = true;
+
     async function fetchPhoto() {
       setIsLoading(true);
       let response;
@@ -23,12 +25,18 @@ const PhotoView = () => {
         return;
       }
       const photo = (await response.json()) as Photo;
-      setPhoto(photo);
+      if (mounted) {
+        setPhoto(photo);
+      }
 
       setIsLoading(false);
     }
 
     fetchPhoto();
+
+    return () => {
+      mounted = false;
+    };
   }, [photoId]);
 
   if (isLoading || !photo) {
@@ -44,10 +52,9 @@ const PhotoView = () => {
         <div className="photo-content">
           <p className="photo-label">Title: {title}</p>
           <p className="photo-label">Album ID: {albumId}</p>
-          <p className="photo-label">
-            {" "}
-            <a href={`#/albums/${albumId}`}>Browse full album</a>
-          </p>
+        </div>
+        <div className="button">
+          <a href={`#/albums/${albumId}`}>Browse Album</a>
         </div>
       </div>
     </div>
