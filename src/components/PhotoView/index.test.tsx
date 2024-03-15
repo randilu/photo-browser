@@ -41,9 +41,9 @@ describe("PhotoView", () => {
     const photoElement = screen.getByRole("img");
 
     expect(photoElement).toBeInTheDocument();
-
     expect(photoElement).toHaveAttribute("src", mockData.url);
     expect(photoElement).toHaveAttribute("alt", mockData.title);
+
     expect(screen.getByText("Title: test title")).toBeInTheDocument();
     expect(screen.getByText("Album ID: 1")).toBeInTheDocument();
     expect(screen.getByRole("link")).toBeInTheDocument();
