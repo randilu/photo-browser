@@ -4,6 +4,7 @@ import AlbumView from "./components/AlbumView";
 import Header from "./components/Header";
 import PhotoGrid from "./components/PhotoGrid";
 import PhotoView from "./components/PhotoView";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -21,10 +22,7 @@ function App() {
           <Route path="albums">
             <Route path=":albumId" element={<AlbumView />} />
           </Route>
-          <Route
-            path="*"
-            element={<h1>404: Oops! The page you are looking is not found</h1>}
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
