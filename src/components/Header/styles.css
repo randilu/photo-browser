@@ -1,15 +1,40 @@
 .header-container {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   height: 5vh;
   background-color: #65c3c8;
+  outline: #392723 0.25rem solid;
 }
 
-.header-label {
-  margin-left: 2rem;
-  font-size: 1.5rem;
+.header-brand {
+  display: flex;
+  align-items: center;
+  width: 9rem;
   color: #312339;
-  font-family: "Rubik", sans-serif;
+  margin-left: 1rem;
+}
+
+.header-brand a {
+  display: flex;
+}
+
+.header-brand :hover {
+  cursor: pointer;
+}
+
+.header-logo {
+  height: calc(10px + 3vmin);
+  pointer-events: none;
+}
+
+.header-title {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  color: #312339;
   font-weight: 700;
+  font-size: calc(12px + 1vmin);
+  transform: translateX(-5rem);
 }

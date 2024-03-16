@@ -1,10 +1,12 @@
 .grid-item {
   margin: 0.5rem;
-  padding: 0.5rem;
-  border: none;
-  background-color: #faf7f8;  
+  border: 0.25rem solid #392723;
 }
 
 .grid-item:hover {
   scale: 1.05;
+}
+
+.grid-item img {
+  display: block;
 }

@@ -4,8 +4,9 @@ import Header from "./index";
 
 describe("Header", () => {
   it("should render header label", () => {
-    render(<Header />);
+    render(<Header title={"Test Title"} />);
 
     expect(screen.getByText(/Photo Browser/i)).toBeInTheDocument();
+    expect(screen.getByText(/Test Title/i)).toBeInTheDocument();
   });
 });

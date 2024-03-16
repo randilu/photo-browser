@@ -1,11 +1,11 @@
-.album-container {
+.gallery-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-.album-view-label {
+.gallery-view-label {
   font-size: 1rem;
   color: #312339;
   font-weight: 700;

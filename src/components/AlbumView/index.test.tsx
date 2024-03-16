@@ -1,16 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import GalleryView from "./index";
 
-import AlbumView from "./index";
+describe("GalleryView", () => {
+  it("renders the gallery title", () => {
+    render(<GalleryView />);
 
-jest.mock("react-router-dom", () => ({
-  useParams: () => ({ albumId: 1 }),
-}));
-
-describe("AlbumView", () => {
-  it("renders the album title", () => {
-    render(<AlbumView />);
-
-    expect(screen.getByText("Album Id: 1")).toBeInTheDocument();
+    expect(screen.getByText("All Photos")).toBeInTheDocument();
   });
 });

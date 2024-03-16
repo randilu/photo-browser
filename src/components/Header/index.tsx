@@ -1,9 +1,17 @@
 import "./styles.css";
+import logo from "../../logo.svg";
 
-export default function Header() {
+export default function Header({ title }: { title: string }) {
   return (
     <div className="header-container">
-        <p className="header-label">Photo Browser 📷</p>
+      <div className="header-brand">
+        <a href="#/">
+          <img src={logo} className="header-logo" alt="logo" />
+        </a>
+      </div>
+      <div className="header-title">
+        <p>{title}</p>
+      </div>
     </div>
-  )
+  );
 }
