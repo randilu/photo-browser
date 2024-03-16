@@ -47,6 +47,6 @@ describe("PhotoView", () => {
     expect(screen.getByText("Title: test title")).toBeInTheDocument();
     expect(screen.getByText("Album ID: 1")).toBeInTheDocument();
     expect(screen.getByRole("link")).toBeInTheDocument();
-    expect(screen.getByRole("link")).toHaveAttribute("href", "/albums/1");
+    expect(screen.getByRole("link")).toHaveAttribute("href", "#/albums/1");
   });
 });

@@ -9,7 +9,7 @@ const PhotoGrid = ({ fetchUrl }: { fetchUrl: string }) => {
   const {
     isLoading,
     items: photos,
-    lastElementRef,
+    intersectionObserverRef,
   } = useLazyLoader<Photo>({
     pageSize: PAGE_SIZE,
     fetchUrl,
@@ -22,7 +22,7 @@ const PhotoGrid = ({ fetchUrl }: { fetchUrl: string }) => {
   const photoList = photos.map((photo: Photo, index: number) => {
     if (photos.length === index + 1) {
       return (
-        <GridItem key={photo.id} photo={photo} reference={lastElementRef} />
+        <GridItem key={photo.id} photo={photo} ref={intersectionObserverRef} />
       );
     }
     return <GridItem key={index} photo={photo as Photo} />;

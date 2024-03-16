@@ -7,7 +7,7 @@ describe("Error", () => {
     render(<Error />);
 
     expect(
-      screen.getByText("Unexpected error occurred. Please try again later.")
+      screen.getByText("Something went wrong. Please refresh the page and try again.")
     ).toBeInTheDocument();
   });
 });

@@ -3,6 +3,10 @@ import "@testing-library/jest-dom";
 import GridItem from "./index";
 
 describe("GridItem", () => {
+  const mockRef = jest.fn(() => ({
+    current: null,
+  }));
+
   it("should render photo thumbnail", () => {
     const mockPhoto = {
       id: 1,
@@ -12,7 +16,7 @@ describe("GridItem", () => {
       thumbnailUrl: "test",
     };
 
-    render(<GridItem photo={mockPhoto} reference={null} />);
+    render(<GridItem photo={mockPhoto} ref={mockRef} />);
 
     const photoImage = screen.getByRole("img");
 
@@ -21,7 +25,7 @@ describe("GridItem", () => {
     expect(photoImage).toHaveAttribute("alt", mockPhoto.title);
     expect(screen.getByRole("link")).toHaveAttribute(
       "href",
-      `/photos/${mockPhoto.id}`
+      `#/photos/${mockPhoto.id}`
     );
   });
 });

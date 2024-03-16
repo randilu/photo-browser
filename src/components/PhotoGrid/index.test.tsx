@@ -12,7 +12,8 @@ describe("PhotoGrid", () => {
     mockedUseLazyLoader.mockReturnValue({
       items: [],
       isLoading: false,
-      lastElementRef: jest.fn(),
+      error: null,
+      intersectionObserverRef: jest.fn(),
     });
 
     render(<PhotoGrid fetchUrl="https://testUrl" />);
@@ -37,15 +38,10 @@ describe("PhotoGrid", () => {
           albumId: 1,
           thumbnailUrl: "https://testThumbnail/2",
         },
-      ] as Array<{
-        id: number;
-        title: string;
-        url: string;
-        albumId: number;
-        thumbnailUrl: string;
-      }>,
+      ],
       isLoading: false,
-      lastElementRef: jest.fn(),
+      error: null,
+      intersectionObserverRef: jest.fn(),
     });
 
     render(<PhotoGrid fetchUrl="https://testUrl" />);
@@ -58,11 +54,11 @@ describe("PhotoGrid", () => {
 
     expect(photoImages[0]).toHaveAttribute("src", "https://testThumbnail/1");
     expect(photoImages[0]).toHaveAttribute("alt", "thumbnail 1");
-    expect(photoLinks[0]).toHaveAttribute("href", "/photos/1");
+    expect(photoLinks[0]).toHaveAttribute("href", "#/photos/1");
 
     expect(photoImages[1]).toHaveAttribute("src", "https://testThumbnail/2");
     expect(photoImages[1]).toHaveAttribute("alt", "thumbnail 2");
-    expect(photoLinks[1]).toHaveAttribute("href", "/photos/2");
+    expect(photoLinks[1]).toHaveAttribute("href", "#/photos/2");
   });
 
   it("should render loading text when loading", () => {
@@ -77,7 +73,8 @@ describe("PhotoGrid", () => {
         },
       ],
       isLoading: true,
-      lastElementRef: jest.fn(),
+      error: null,
+      intersectionObserverRef: jest.fn(),
     });
 
     render(<PhotoGrid fetchUrl="https://testUrl" />);
