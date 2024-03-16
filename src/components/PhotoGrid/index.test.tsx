@@ -8,6 +8,25 @@ jest.mock("../../hooks/useLazyLoader");
 const mockedUseLazyLoader = jest.mocked(useLazyLoader);
 
 describe("PhotoGrid", () => {
+  const mockPhotos = [
+    {
+      id: 1,
+      title: "thumbnail 1",
+      url: "https://testPhoto/1",
+      albumId: 1,
+      thumbnailUrl: "https://testThumbnail/1",
+    },
+    {
+      id: 2,
+      title: "thumbnail 2",
+      url: "https://testPhoto/2",
+      albumId: 1,
+      thumbnailUrl: "https://testThumbnail/2",
+    },
+  ];
+  afterAll(() => {
+    jest.restoreAllMocks();
+  });
   it("should render Loader when photos are empty on initial load", () => {
     mockedUseLazyLoader.mockReturnValue({
       items: [],
@@ -23,22 +42,7 @@ describe("PhotoGrid", () => {
 
   it("should render photo grid", () => {
     mockedUseLazyLoader.mockReturnValue({
-      items: [
-        {
-          id: 1,
-          title: "thumbnail 1",
-          url: "https://testPhoto/1",
-          albumId: 1,
-          thumbnailUrl: "https://testThumbnail/1",
-        },
-        {
-          id: 2,
-          title: "thumbnail 2",
-          url: "https://testPhoto/2",
-          albumId: 1,
-          thumbnailUrl: "https://testThumbnail/2",
-        },
-      ],
+      items: [...mockPhotos],
       isLoading: false,
       error: null,
       intersectionObserverRef: jest.fn(),
@@ -63,15 +67,7 @@ describe("PhotoGrid", () => {
 
   it("should render loading text when loading", () => {
     mockedUseLazyLoader.mockReturnValue({
-      items: [
-        {
-          id: 1,
-          title: "thumbnail 1",
-          url: "https://testPhoto/1",
-          albumId: 1,
-          thumbnailUrl: "https://testThumbnail/1",
-        },
-      ],
+      items: [...mockPhotos],
       isLoading: true,
       error: null,
       intersectionObserverRef: jest.fn(),

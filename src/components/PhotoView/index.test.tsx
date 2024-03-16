@@ -1,9 +1,14 @@
-import { render, screen, act, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import PhotoView from "./index";
+import useFetch from "../../hooks/useFetch";
+
+jest.mock("../../hooks/useFetch");
+
+const mockedUseFetch = jest.mocked(useFetch);
 
 describe("PhotoView", () => {
-  const mockPhotoResponse = {
+  const mockPhoto = {
     albumId: 1,
     id: 1,
     title: "test title",
@@ -11,38 +16,33 @@ describe("PhotoView", () => {
     thumbnailUrl: "https://testThumbnailUrl",
   };
 
-  beforeEach(() => {
-    const mockResponse = new Response(JSON.stringify(mockPhotoResponse));
-    jest.spyOn(global, "fetch").mockResolvedValue(mockResponse);
-  });
-
   afterEach(() => {
     jest.restoreAllMocks();
   });
 
   it("should render Loader when loading", async () => {
+    mockedUseFetch.mockReturnValue({
+      data: null,
+      isLoading: true,
+      error: null,
+    });
     render(<PhotoView />);
     expect(screen.getByTestId("loader")).toBeInTheDocument();
   });
 
   it("should render photo", async () => {
-    const mockData = {
-      albumId: 1,
-      id: 1,
-      title: "test title",
-      url: "https://testUrl",
-      thumbnailUrl: "https://testThumbnailUrl",
-    };
-
-    await act(async () => {
-      render(<PhotoView />);
+    mockedUseFetch.mockReturnValue({
+      data: mockPhoto,
+      isLoading: false,
+      error: null,
     });
+    render(<PhotoView />);
 
     const photoElement = screen.getByRole("img");
 
     expect(photoElement).toBeInTheDocument();
-    expect(photoElement).toHaveAttribute("src", mockData.url);
-    expect(photoElement).toHaveAttribute("alt", mockData.title);
+    expect(photoElement).toHaveAttribute("src", "https://testUrl");
+    expect(photoElement).toHaveAttribute("alt", "test title");
 
     expect(screen.getByText("Title: test title")).toBeInTheDocument();
     expect(screen.getByText("Album ID: 1")).toBeInTheDocument();

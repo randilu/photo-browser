@@ -1,8 +1,8 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import useLazyLoader from "./useLazyLoader";
+import useFetch from "./useFetch";
 import { Photo } from "../types";
 
-describe("useLazyLoader", () => {
+describe("useFetch", () => {
   const mockPhotos = [
     {
       albumId: 1,
@@ -21,19 +21,17 @@ describe("useLazyLoader", () => {
     jest.restoreAllMocks();
   });
 
-  it("should return lazy loaded data", async () => {
-    const { result } = renderHook(() =>
-      useLazyLoader<Photo>({ pageSize: 10, fetchUrl: "https://fetchUrl" })
-    );
+  it("should return fetched data", async () => {
+    const { result } = renderHook(() => useFetch<Photo>("https://fetchUrl"));
 
     await waitFor(() => {
-      expect(result.current.items).toEqual(mockPhotos);
-    });
-    await waitFor(() => {
-      expect(result.current.isLoading).toEqual(false);
+      expect(result.current.data).toEqual(mockPhotos);
     });
     await waitFor(() => {
       expect(result.current.error).toEqual(null);
+    });
+    await waitFor(() => {
+      expect(result.current.isLoading).toEqual(false);
     });
   });
 
@@ -42,12 +40,10 @@ describe("useLazyLoader", () => {
       .spyOn(global, "fetch")
       .mockRejectedValue(new Error("Error fetching data"));
 
-    const { result } = renderHook(() =>
-      useLazyLoader<Photo>({ pageSize: 10, fetchUrl: "https://fetchUrl" })
-    );
+    const { result } = renderHook(() => useFetch<Photo>("https://fetchUrl"));
 
     await waitFor(() => {
-      expect(result.current.items).toEqual([]);
+      expect(result.current.data).toEqual(null);
     });
     await waitFor(() => {
       expect(result.current.isLoading).toEqual(false);
@@ -64,9 +60,7 @@ describe("useLazyLoader", () => {
       });
     });
 
-    const { result } = renderHook(() =>
-      useLazyLoader<Photo>({ pageSize: 10, fetchUrl: "https://fetchUrl" })
-    );
+    const { result } = renderHook(() => useFetch<Photo>("https://fetchUrl"));
 
     await waitFor(() => expect(result.current.isLoading).toEqual(true));
   });
