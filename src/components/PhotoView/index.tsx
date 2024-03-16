@@ -1,43 +1,22 @@
-import "./styles.css";
-import { Photo } from "../../types";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Photo } from "../../types";
+import useFetch from "../../hooks/useFetch";
+import Error from "../Error";
 import Loader from "../Loader";
+import "./styles.css";
 
 const PhotoView = () => {
   const { photoId } = useParams();
-  const [photo, setPhoto] = useState<Photo | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    let mounted = true;
+  const {
+    data: photo,
+    isLoading,
+    error,
+  } = useFetch<Photo>(`https://jsonplaceholder.typicode.com/photos/${photoId}`);
 
-    async function fetchPhoto() {
-      setIsLoading(true);
-      let response;
-      try {
-        response = await fetch(
-          `https://jsonplaceholder.typicode.com/photos/${photoId}`
-        );
-      } catch (error) {
-        console.error("Error fetching photos", error);
-        setIsLoading(false);
-        return;
-      }
-      const photo = (await response.json()) as Photo;
-      if (mounted) {
-        setPhoto(photo);
-      }
-
-      setIsLoading(false);
-    }
-
-    fetchPhoto();
-
-    return () => {
-      mounted = false;
-    };
-  }, [photoId]);
+  if (error) {
+    return <Error />;
+  }
 
   if (isLoading || !photo) {
     return <Loader />;
