@@ -6,7 +6,7 @@ describe("Header", () => {
   it("should render header label", () => {
     render(<Header title={"Test Title"} />);
 
-    expect(screen.getByText(/Photo Browser/i)).toBeInTheDocument();
+    expect(screen.getByRole("img")).toBeInTheDocument();
     expect(screen.getByText(/Test Title/i)).toBeInTheDocument();
   });
 });

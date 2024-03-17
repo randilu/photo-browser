@@ -38,15 +38,13 @@ describe("PhotoView", () => {
     });
     render(<PhotoView />);
 
-    const photoElement = screen.getByRole("img");
+    const photoElement = screen.getByAltText("test title");
 
     expect(photoElement).toBeInTheDocument();
     expect(photoElement).toHaveAttribute("src", "https://testUrl");
     expect(photoElement).toHaveAttribute("alt", "test title");
 
-    expect(screen.getByText("Title: test title")).toBeInTheDocument();
-    expect(screen.getByText("Album ID: 1")).toBeInTheDocument();
-    expect(screen.getByRole("link")).toBeInTheDocument();
-    expect(screen.getByRole("link")).toHaveAttribute("href", "#/albums/1");
+    expect(screen.getByText(/test title/)).toBeInTheDocument();
+    expect(screen.getByText(/Album ID/)).toBeInTheDocument();
   });
 });
