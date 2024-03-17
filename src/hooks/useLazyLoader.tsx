@@ -49,8 +49,8 @@ export default function useLazyLoader<T>({
         const newItems = await response.json();
         if (mounted) {
           setItems((items) => [...items, ...newItems]);
+          setHasNextPage(newItems.length > 0);
         }
-        setHasNextPage(newItems.length > 0);
       } catch (error) {
         setError(
           error instanceof Error ? error : new Error("Error fetching data")

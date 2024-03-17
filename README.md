@@ -23,6 +23,8 @@ Checkout the repository. You will need node and npm installed globally on your m
 
 ```npm test```
 
+(Follow the interactive CLI - `> Press 'a' to run all tests.`)
+
 **To Start Server:**
 
 ```npm start```
@@ -44,9 +46,18 @@ Open http://localhost:3000 to view it in your browser.
 │   ├── manifest.json
 │   └── robots.txt
 ├── src
+│   ├── App.test.tsx
 │   ├── App.tsx
 │   ├── components
 │   │   ├── AlbumView
+│   │   │   ├── index.test.tsx
+│   │   │   ├── index.tsx
+│   │   │   └── styles.css
+│   │   ├── Error
+│   │   │   ├── index.test.tsx
+│   │   │   ├── index.tsx
+│   │   │   └── styles.css
+│   │   ├── GalleryView
 │   │   │   ├── index.test.tsx
 │   │   │   ├── index.tsx
 │   │   │   └── styles.css
@@ -76,10 +87,14 @@ Open http://localhost:3000 to view it in your browser.
 │   │       └── styles.css
 │   ├── constants.ts
 │   ├── hooks
+│   │   ├── useFetch.test.tsx
+│   │   ├── useFetch.tsx
 │   │   ├── useLazyLoader.test.tsx
 │   │   └── useLazyLoader.tsx
 │   ├── index.css
 │   ├── index.tsx
+│   ├── logo.svg
+│   ├── react-app-env.d.ts
 │   └── types.ts
 └── tsconfig.json
 

@@ -1,7 +1,7 @@
-import "./styles.css";
 import logo from "../../logo.svg";
+import "./styles.css";
 
-export default function Header({ title }: { title: string }) {
+const Header = ({ title }: { title: string }) => {
   return (
     <div className="header-container">
       <div className="header-brand">
@@ -14,4 +14,6 @@ export default function Header({ title }: { title: string }) {
       </div>
     </div>
   );
-}
+};
+
+export default Header;

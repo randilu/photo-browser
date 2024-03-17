@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Header";
 import "./styles.css";
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <React.Fragment>
       <Header title="Not Found" />
@@ -13,4 +13,6 @@ export default function NotFound() {
       </div>
     </React.Fragment>
   );
-}
+};
+
+export default NotFound;

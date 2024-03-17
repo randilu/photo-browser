@@ -1,5 +1,7 @@
 import "./styles.css";
 
-export default function Loader() {
+const Loader = () => {
   return <div className="loader" data-testid="loader"></div>;
-}
+};
+
+export default Loader;
