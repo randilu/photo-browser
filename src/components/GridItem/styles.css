@@ -1,6 +1,8 @@
 .grid-item {
   margin: 0.5rem;
   border: 0.25rem solid #392723;
+  width: 150px;
+  height: 150px;
 }
 
 .grid-item:hover {

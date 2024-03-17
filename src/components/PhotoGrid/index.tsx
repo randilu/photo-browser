@@ -4,15 +4,24 @@ import { Photo } from "../../types";
 import Loader from "../Loader";
 import useLazyLoader from "../../hooks/useLazyLoader";
 import { PAGE_SIZE } from "../../constants";
+import Error from "../Error";
 
 const PhotoGrid = ({ fetchUrl }: { fetchUrl: string }) => {
   const {
     isLoading,
     items: photos,
+    error,
     intersectionObserverRef,
   } = useLazyLoader<Photo>({
     pageSize: PAGE_SIZE,
     fetchUrl,
+    placeholder: {
+      id: 0,
+      thumbnailUrl: "test",
+      title: "test",
+      url: "test",
+      albumId: 0,
+    },
   });
 
   if (photos.length === 0) {
@@ -25,7 +34,7 @@ const PhotoGrid = ({ fetchUrl }: { fetchUrl: string }) => {
         <GridItem key={photo.id} photo={photo} ref={intersectionObserverRef} />
       );
     }
-    return <GridItem key={index} photo={photo as Photo} />;
+    return <GridItem key={photo.id} photo={photo} />;
   });
 
   return (
