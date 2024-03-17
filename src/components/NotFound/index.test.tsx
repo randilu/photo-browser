@@ -6,6 +6,8 @@ describe("NotFound", () => {
   it("should render header label", () => {
     render(<NotFound />);
 
-    expect(screen.getByText("404: Oops! The page you are looking for is not found.")).toBeInTheDocument();
+    expect(
+      screen.getByText("404: Oops! The page you are looking for was not found.")
+    ).toBeInTheDocument();
   });
 });
