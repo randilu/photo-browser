@@ -41,56 +41,21 @@ Open http://localhost:3000 to view it in your browser.
 ├── package-lock.json
 ├── package.json
 ├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── manifest.json
-│   └── robots.txt
 ├── src
 │   ├── App.test.tsx
 │   ├── App.tsx
 │   ├── components
 │   │   ├── AlbumView
-│   │   │   ├── index.test.tsx
-│   │   │   ├── index.tsx
-│   │   │   └── styles.css
 │   │   ├── Error
-│   │   │   ├── index.test.tsx
-│   │   │   ├── index.tsx
-│   │   │   └── styles.css
 │   │   ├── GalleryView
-│   │   │   ├── index.test.tsx
-│   │   │   ├── index.tsx
-│   │   │   └── styles.css
 │   │   ├── GridItem
-│   │   │   ├── index.test.tsx
-│   │   │   ├── index.tsx
-│   │   │   └── styles.css
 │   │   ├── Header
-│   │   │   ├── index.test.tsx
-│   │   │   ├── index.tsx
-│   │   │   └── styles.css
 │   │   ├── Loader
-│   │   │   ├── index.test.tsx
-│   │   │   ├── index.tsx
-│   │   │   └── styles.css
 │   │   ├── NotFound
-│   │   │   ├── index.test.tsx
-│   │   │   ├── index.tsx
-│   │   │   └── styles.css
 │   │   ├── PhotoGrid
-│   │   │   ├── index.test.tsx
-│   │   │   ├── index.tsx
-│   │   │   └── styles.css
 │   │   └── PhotoView
-│   │       ├── index.test.tsx
-│   │       ├── index.tsx
-│   │       └── styles.css
 │   ├── constants.ts
 │   ├── hooks
-│   │   ├── useFetch.test.tsx
-│   │   ├── useFetch.tsx
-│   │   ├── useLazyLoader.test.tsx
-│   │   └── useLazyLoader.tsx
 │   ├── index.css
 │   ├── index.tsx
 │   ├── logo.svg
